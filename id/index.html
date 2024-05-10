@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Id Card</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" >
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel='stylesheet' type='text/css'  href='styles.css'>
+    <script src='script.js'></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class = "row d-flex justify-content-center">
+            <h1 >ID Card Generator</h1>
+        </div>
+        <div class = "row">
+            <div class="col-sm-4">
+                <form onclick="pdf()"> 
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="name"  placeholder="Enter Name">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="parentname" placeholder="Enter Parent Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="date" placeholder="Enter Date Of Birth">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="rool"  placeholder="Enter Rool Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Select Course</label>
+                        <select class="form-control" id="course">
+                          <option>Mechanical</option>
+                          <option>Computer Science</option>
+                          <option>Civil</option>
+                          <option>ECE</option>
+                          <option>AI/ML</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="phone"  placeholder="Enter phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" rows="3"></textarea>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+            <div class="col-sm-8" id="pdfcontent" >
+                <div class="card" style="width: 19rem;">
+                    <img class="card-img-top" src="logo.png" alt="Card image cap" style="margin-left: 3%;width: 95%;">
+                    <div class="card-body">
+                        <div style="background-color: red; height:30px;width: 100%;"><p style="text-align: center;margin-top: 10px;" >Student Identity card</p></div>
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Cras justo odio</li>
+                      <li class="list-group-item">Dapibus ac facilisis in</li>
+                      <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                    <div class="card-body">
+                      <a href="#" class="card-link">Card link</a>
+                      <a href="#" class="card-link">Another link</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        
+       
+        function pdf()
+        {
+           
+            const doc = new window.jspdf.jsPDF({
+                orientation: "landscape",
+                unit: "in",
+                format: [4,7]
+                });
+
+                doc.html(document.getElementById("pdfcontent"), {
+   callback: function (doc) {
+     doc.save();
+   },
+   x: 1,
+   y: 1
+});
+        }
+       
+    </script>
+</body>
+</html>
